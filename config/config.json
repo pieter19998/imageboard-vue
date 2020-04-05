@@ -1,0 +1,19 @@
+{
+    "boardRoutes":{
+        "fetch":"http://localhost:3000/api/board",
+        "post":"http://localhost:3000/api/board"
+    },
+        "userRoutes":{
+            "fetch":"http://localhost:3000/api/user",
+            "login":"http://localhost:3000/api/user/login"
+        },
+        "threadRoutes":{
+            "base": "http://localhost:3000/api/thread",
+            "fetchAll":"http://localhost:3000/api/thread/board"
+                },
+        "commentRoutes":{
+        "thread": "http://localhost:3000/api/comment/thread",
+        "post": "http://localhost:3000/api/comment/threadComment",
+        "fetch":"http://localhost:3000/api/comment"
+        }
+}

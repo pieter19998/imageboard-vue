@@ -1,0 +1,91 @@
+# Docker images provided by https://github.com/cypress-io/cypress-docker-images
+# this example mostly follows the GitLab example in
+# https://github.com/cypress-io/cypress-example-kitchensink
+
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - image
+  # - test # TODO!
+  - deploy
+  
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  GIT_DEPTH: 0
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+build:
+  stage: build
+  image: node:8
+  script:
+  - npm install --progress=false
+  - npm run build
+  artifacts: 
+    paths: 
+    - dist/
+    
+
+#SonarQube
+image:
+  name: sonarsource/sonar-scanner-cli:latest
+  entrypoint: [""]
+
+sonarqube-check:
+  stage: .pre
+  script:
+    - sonar-scanner -Dsonar.qualitygate.wait=true
+  allow_failure: true
+  only:
+    - master
+
+# TODO
+# two jobs that run after "install" job finishes
+# NPM dependencies and Cypress binary should be already installed
+# cypress-e2e:
+#   image: cypress/base:10
+#   stage: test
+#   script:
+#     - $(npm bin)/cypress run
+#   artifacts:
+#     expire_in: 1 week
+#     when: always
+#     paths:
+#     - tests/e2e/specs
+
+#
+# Deploy to Heroku
+# DPL is a deploy tool made for continuous deployment that’s developed and used
+# by Travis CI, but can also be used with GitLab CI.
+# https://docs.gitlab.com/ee/ci/examples/deployment/#using-dpl-with-docker
+#
+
+
+deploy:
+  stage: deploy
+  image: "ruby:2.5"
+  script:
+  # install dpl:
+  - apt-get update -qy
+  - apt-get install rubygems ruby-dev -y
+  - gem install dpl
+  # deploy to heroku:
+  - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY --skip_cleanup
+  
+  environment:
+    name: master
+    url: https://$HEROKU_APP_NAME.herokuapp.com
+  only:
+  - merge_requests
+  - master
