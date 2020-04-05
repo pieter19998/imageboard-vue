@@ -61,3 +61,35 @@ it('User delete', () => {
     cy.get('.action').click()
     cy.get('#info-modal___BV_modal_footer_ > .btn-danger > .bi-trash').click()
 });
+
+it('Unique username', () => {
+    cy.visit('/');
+    cy.contains('h1', 'Home');
+    cy.contains('a', 'Register').click();
+    cy.get('#username').eq(0).type('testUser222');
+    cy.get('#email').eq(0).type('email@testuseremail.com');
+    cy.get('#radio-group-1').click();
+    cy.get('#date').eq(0).type('1999-10-10');
+    cy.get('#password').eq(0).type('password');
+    cy.get('#passwordRepeat').eq(0).type('password');
+    cy.get('.btn-primary').click();
+    cy.get('.alert');
+    cy.visit('/');
+    cy.contains('h1', 'Home');
+});
+
+it('Unique email', () => {
+    cy.visit('/');
+    cy.contains('h1', 'Home');
+    cy.contains('a', 'Register').click();
+    cy.get('#username').eq(0).type('testUser');
+    cy.get('#email').eq(0).type('email@testuseremail.com');
+    cy.get('#radio-group-1').click();
+    cy.get('#date').eq(0).type('1999-10-10');
+    cy.get('#password').eq(0).type('password');
+    cy.get('#passwordRepeat').eq(0).type('password');
+    cy.get('.btn-primary').click();
+    cy.get('.alert');
+    cy.visit('/');
+    cy.contains('h1', 'Home');
+});

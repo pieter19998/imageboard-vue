@@ -21,7 +21,7 @@
       <div class="card">
         <div class="d-flex justify-content-center align-items-center">
           <img
-                  src="assets/images/person.png"
+                  src="src/assets/logo.png"
                   class="card-img-top rounded-circle border profile-pic"
                   alt="..."
           />
@@ -51,6 +51,7 @@
         <li>role: string</li>
         <li>gender: string</li>
         <li>dateOfBirth: date</li>
+        <li>Status: int</li>
       </ul>
     </div>
     <div class="col-sm-12 col-md-4">
@@ -60,6 +61,7 @@
         <li>naam: string</li>
         <li>Creator: string</li>
         <li>threads: [threads]</li>
+        <li>Status: int</li>
       </ul>
     </div>
     <div class="col-sm-12 col-md-4">
@@ -70,6 +72,7 @@
         <li>text: string</li>
         <li>image: File</li>
         <li>creationDate: datetime</li>
+        <li>Status: int</li>
         <li>comment: [comments]</li>
       </ul>
     </div>
@@ -77,9 +80,9 @@
       <p>Entiteit: Post</p>
       <ul>
         <li>id: string</li>
-        <li>user: string</li>
-        <li>post: string</li>
-        <li>postdatetime: datetime</li>
+        <li>text: string</li>
+        <li>creationDate: datetime</li>
+        <li>Status: int</li>
         <li>replies: [comments]</li>
       </ul>
     </div>

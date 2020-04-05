@@ -8,14 +8,14 @@ describe('Thread', function () {
         cy.get('.btn-primary').click();
         cy.get('#board__BV_button_').click();
         cy.get('#createBoard').click();
-        cy.get('#name').eq(0).type('testBoard1');
+        cy.get('#name').eq(0).type('testBoardComments');
         cy.get('#description').eq(0).type('Board made for testing');
         cy.get('.btn').click();
         cy.visit('/');
         cy.get('tbody > tr > [aria-colindex="3"]').click();
         cy.get('.btn').click();
-        cy.get('#title').eq(0).type('testThread');
-        cy.get('#text').eq(0).type('testThread Description');
+        cy.get('#title').eq(0).type('testThreadComments');
+        cy.get('#text').eq(0).type('testThread for Comments');
         cy.get('#create').click();
         cy.get(':nth-child(1) > .container > .card > :nth-child(2)');
 

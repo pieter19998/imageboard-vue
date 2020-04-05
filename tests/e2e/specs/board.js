@@ -40,6 +40,15 @@ describe('Hooks', function () {
         cy.get('.alert');
     });
 
+    it('Create Board Character Limit', () => {
+        cy.get('#board__BV_button_').click();
+        cy.get('#createBoard').click();
+        cy.get('#name').eq(0).type('testBoard6');
+        cy.get('#description').eq(0).type('LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING LONG TEXT FOR TESTING');
+        cy.get('.btn').click();
+        cy.get('.alert');
+    });
+
     it('Edit Board ', () => {
         cy.get('#board__BV_button_').click();
         cy.get('#createBoard').click();
@@ -58,11 +67,6 @@ describe('Hooks', function () {
 
     it('Delete Board ', () => {
         cy.visit('/');
-        cy.contains('h1', 'Home');
-        cy.contains('a', 'Login').click();
-        cy.get('#text-username').eq(0).type('admin');
-        cy.get('#text-password').eq(0).type('password');
-        cy.get('.btn-primary').click();
         cy.get('#__BVID__52__BV_button_').click();
         cy.get(':nth-child(1) > .dropdown-item').click();
         cy.get(':nth-child(1) > [aria-colindex="3"] > [variant="link"] > .bi-trash').click();

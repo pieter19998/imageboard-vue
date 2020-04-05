@@ -8,8 +8,8 @@
 
                 <b-collapse id="nav-collapse" is-nav type="dark">
                     <b-nav-item-dropdown id="board" text="Board" v-if="this.admin">
-                        <b-dropdown-item to="/board" id="listBoard">Boards </b-dropdown-item>
-                        <b-dropdown-item to="/board/create" id="createBoard">BoardsCreate</b-dropdown-item>
+                        <b-dropdown-item id="listBoard" to="/board">Boards</b-dropdown-item>
+                        <b-dropdown-item id="createBoard" to="/board/create">BoardsCreate</b-dropdown-item>
                     </b-nav-item-dropdown>
                     <b-navbar-nav class="">
                         <b-nav-item to="/">Home</b-nav-item>
@@ -20,14 +20,13 @@
                         <b-nav-item to="#" v-on:click="bye()">Log out</b-nav-item>
                     </b-navbar-nav>
                     <b-navbar-nav class="ml-auto" v-else>
-                        <b-nav-item to="/register" id="register">Register</b-nav-item>
-                        <b-nav-item to="/login" id="login">Login</b-nav-item>
+                        <b-nav-item id="register" to="/register">Register</b-nav-item>
+                        <b-nav-item id="login" to="/login">Login</b-nav-item>
                     </b-navbar-nav>
 
                 </b-collapse>
             </b-navbar>
         </div>
-        {{admin}}
         <router-view/>
     </div>
 </template>
