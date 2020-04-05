@@ -2,7 +2,8 @@
     <b-container>
         <br>
         <h1>{{this.$route.params.id}}</h1>
-        <b-button v-on:click="createThread()">Create Thread</b-button>
+<!--        <b-button v-on:click="createThread()">Create Thread</b-button>-->
+        <b-link :to="{ name: 'threadCreate', params: { board: this.$route.params.id } }" class="btn btn-dark">create Thread</b-link>
         <div class="row">
             <div class="col-md-3 col-6 my-1" v-bind:key="thread.id" v-for="thread in this.getThreadByBoard(this.$route.params.id)">
                 <Thread v-bind:thread="{thread,currentUser}"></Thread>

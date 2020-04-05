@@ -23,8 +23,6 @@ const actions = {
     async fetchThread({commit}, id) {
         Axios.defaults.headers.common["token"] = sessionStorage.getItem("token");
         const response = await Axios.get(config.threadRoutes.base + '/' + id);
-
-        console.log(response);
         commit('setUpdateThread', response.data);
     },
 

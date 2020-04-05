@@ -6,10 +6,10 @@
             </b-card-text>
             <b-list-group class="ml-auto" v-if="owner">
                 <b-list-group-item>
-                    <b-link :to="{ name: 'commentUpdate', params: { id: comment.comment.id } }" class="action">
+                    <b-link id="commentUpdate" :to="{ name: 'commentUpdate', params: { id: comment.comment.id } }" class="action">
                         <b-icon-pencil></b-icon-pencil>
                     </b-link>
-                    <b-link @click="info($event.target)" class="action" variant="link">
+                    <b-link id="commentDelete" @click="info($event.target)" class="action" variant="link">
                         <b-icon-trash></b-icon-trash>
                     </b-link>
                 </b-list-group-item>
@@ -62,6 +62,7 @@
             },
             async remove(id) {
                 try {
+                    this.$bvModal.hide(this.infoModal.id)
                     await this.deleteComment(id);
                     await this.fetchComments(this.$route.params.id);
                     this.warning = "success";

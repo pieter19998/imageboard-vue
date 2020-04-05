@@ -65,6 +65,7 @@
 
             async remove(name) {
                 try {
+                    this.$bvModal.hide(this.infoModal.id)
                     await this.deleteBoard(name);
                     this.warning = "success";
                     this.showDismissibleAlert = true;

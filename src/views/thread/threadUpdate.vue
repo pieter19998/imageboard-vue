@@ -10,7 +10,7 @@
                 <b-form @submit.self.prevent="update()">
                     <div>
                         <label>Title</label>
-                        <b-input aria-describedby="text-help-block" class="text-center" id="text" required type="text"
+                        <b-input aria-describedby="text-help-block" class="title" id="title" required type="text"
                                  v-model="title"/>
                     </div>
                     <div>
@@ -38,7 +38,7 @@
                     </div>
                     <div>
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Update Thread"/>
+                        <input class="btn btn-primary" type="submit" id="update" value="Update Thread"/>
                     </div>
                 </b-form>
             </b-col>

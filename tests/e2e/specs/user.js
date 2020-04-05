@@ -1,6 +1,6 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-xit('Register', () => {
+it('Register', () => {
     cy.visit('/');
     cy.contains('h1', 'Home');
     cy.contains('a', 'Register').click();
@@ -17,24 +17,24 @@ xit('Register', () => {
     cy.contains('a', 'Log out').click();
 });
 
-xit('User Login', () => {
+it('User Login', () => {
     cy.visit('/');
     cy.contains('h1', 'Home');
     cy.contains('a', 'Login').click();
     // cy.get('.').eq(0).type('u').should('have.value', 'u');
-    cy.get('#text-username').eq(0).type('Admin');
+    cy.get('#text-username').eq(0).type('testUser');
     cy.get('#text-password').eq(0).type('password');
     cy.get('.btn-primary').click();
     cy.contains('h1', 'Home');
     cy.contains('a', 'Log out').click();
 });
 
-xit('User edit', () => {
+it('User edit', () => {
     cy.visit('/');
     cy.contains('h1', 'Home');
     cy.contains('a', 'Login').click();
     // cy.get('.').eq(0).type('u').should('have.value', 'u');
-    cy.get('#text-username').eq(0).type('Admin');
+    cy.get('#text-username').eq(0).type('testUser');
     cy.get('#text-password').eq(0).type('password');
     cy.get('.btn-primary').click();
     cy.contains('a', 'Profile').click();
@@ -52,17 +52,12 @@ it('User delete', () => {
     cy.visit('/');
     cy.contains('h1', 'Home');
     cy.contains('a', 'Login').click();
-    // cy.get('.').eq(0).type('u').should('have.value', 'u');
-    cy.get('#text-username').eq(0).type('Admin');
+    cy.get('#text-username').eq(0).type('testUser');
     cy.get('#text-password').eq(0).type('password');
     cy.get('.btn-primary').click();
     cy.contains('a', 'Profile').click();
     cy.get('.btn-primary').click();
     cy.contains('a', 'Profile').click();
-    cy.get('.btn-danger').click();
-    cy.get('.bi-trash b-icon bi').click();
-
-    // cy.visit('/');
-    // cy.contains('h1', 'Home');
-    // cy.contains('a', 'Log out').click();
+    cy.get('.action').click()
+    cy.get('#info-modal___BV_modal_footer_ > .btn-danger > .bi-trash').click()
 });

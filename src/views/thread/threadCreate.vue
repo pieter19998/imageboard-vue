@@ -11,7 +11,7 @@
                 <b-form @submit.self.prevent="create">
                     <div>
                         <label>Title</label>
-                        <b-input aria-describedby="text-help-block" class="text-center" id="text" required type="text"
+                        <b-input aria-describedby="text-help-block" class="text-center" id="title" required type="text"
                                  v-model="title"/>
                     </div>
                     <div>
@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         <br>
-                        <input class="btn btn-primary" type="submit" value="Create Thread"/>
+                        <input class="btn btn-primary"  id="create" type="submit" value="Create Thread"/>
                     </div>
                 </b-form>
             </b-col>

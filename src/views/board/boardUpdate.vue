@@ -10,13 +10,13 @@
                 <b-form @submit.self.prevent="update()">
                     <div>
                         <label>Name</label>
-                        <b-input v-model="newName" class="text-center" type="text" required id="text-mail" max="5"
+                        <b-input v-model="newName" class="text-center" type="text" required id="name" max="5"
                                  placeholder="name"
                                   aria-describedby="email-help-block"/>
                     </div>
                     <div>
                         <label>description</label>
-                        <b-textarea class="text-center" max-rows="3" rows="3" v-model="description" required
+                        <b-textarea id="description" class="text-center" max-rows="3" rows="3" v-model="description" required
                                     placeholder="description"/>
                     </div>
                     <div>

@@ -16,19 +16,19 @@
                 </b-card-text>
                 <b-card-sub-title class="mb-2">{{thread.thread.creationDate}}</b-card-sub-title>
 <!--                <b-button v-on:click="threadDetail" variant="primary">Open Thread</b-button>-->
-                <b-link class="btn btn-primary" :to="{ name: 'commentView', params: { thread: thread.thread.text,id: thread.thread.id } }">
+                <b-link class="btn btn-primary" id="commentView" :to="{ name: 'commentView', params: { thread: thread.thread.text,id: thread.thread.id } }">
                     Open Thread
                 </b-link>
             </b-card-body>
             <b-list-group v-if="owner" class="ml-auto">
                 <b-list-group-item>
-                    <b-link class="action" :to="{ name: 'threadView', params: { id: thread.thread.id } }">
+                    <b-link class="action" id="threadDetail" :to="{ name: 'threadView', params: { id: thread.thread.id } }">
                         <b-icon-eye></b-icon-eye>
                     </b-link>
-                    <b-link class="action" :to="{ name: 'threadUpdate', params: { id: thread.thread.id } }">
+                    <b-link class="action" id="threadEdit" :to="{ name: 'threadUpdate', params: { id: thread.thread.id } }">
                         <b-icon-pencil></b-icon-pencil>
                     </b-link>
-                    <b-link class="action" variant="link" @click="info($event.target)">
+                    <b-link class="action" id="threadDelete" variant="link" @click="info($event.target)">
                         <b-icon-trash></b-icon-trash>
                     </b-link>
                 </b-list-group-item>
@@ -84,6 +84,7 @@
             },
             async remove(id) {
                 try {
+                    this.$bvModal.hide(this.infoModal.id)
                     await this.deleteThread(id);
                     await this.fetchThreads(this.$route.params.id);
                     this.warning = "success";
