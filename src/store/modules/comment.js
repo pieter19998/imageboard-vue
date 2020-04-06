@@ -33,7 +33,6 @@ const actions = {
     },
 
     async createComment({commit}, data) {
-        await console.log(data)
         Axios.defaults.headers.common["token"] = sessionStorage.getItem('token');
         const response = await Axios.post(config.commentRoutes.post + '/' + data.id, {
             text: data.text,
@@ -43,7 +42,6 @@ const actions = {
     },
 
     async updateComment({commit}, data) {
-        console.log(data);
         Axios.defaults.headers.common["token"] = sessionStorage.getItem('token');
         await Axios.put(config.commentRoutes.fetch + '/' + data.id, {
             text: data.text,

@@ -43,7 +43,6 @@ const actions = {
     },
 
     async updateThread({commit}, data) {
-        console.log(data);
         Axios.defaults.headers.common["token"] = sessionStorage.getItem('token');
         await Axios.put(config.threadRoutes.base + '/' + data.id, {
             title: data.title,
