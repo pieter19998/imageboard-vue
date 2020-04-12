@@ -12,7 +12,7 @@
                         <b-input :state="usernameLengthValidation" class="text-center" id="username"
                                  v-model="username"></b-input>
                         <b-form-invalid-feedback :state="usernameLengthValidation">
-                            Your password must be 5-20 characters long.
+                            Your username must be 5-20 characters long.
                         </b-form-invalid-feedback>
                         <b-form-valid-feedback :state="usernameLengthValidation">
                             Looks Good.
@@ -32,7 +32,7 @@
                                             v-model="gender"
                         ></b-form-radio-group>
                     </b-form-group>
-                    <b-form-group class="text-center" label="Date if birth">
+                    <b-form-group class="text-center" label="Date of birth">
                         <b-input-group class="mb-3">
                             <b-form-input
                                     locale="en-US"
@@ -72,7 +72,6 @@
                 </b-button>
             </template>
         </b-modal>
-        {{gender}}
     </b-container>
 </template>
 
@@ -140,7 +139,8 @@
             },
             async update() {
                 try {
-                    if (this.password === this.passwordRepeat) {
+
+                    if (this.password === this.passwordRepeat && Date.parse(this.dateOfBirth)) {
                         await this.updateUser({
                             email: this.email,
                             username: this.username,
@@ -151,11 +151,13 @@
                         // await this.fetchCurrentUser();
                         await this.$router.push('/')
                     }
-                    this.warning = "password doesn't match";
+                    this.warning = "password doesn't match or Date of Birth is invalid";
                     this.showDismissibleAlert = true;
+                    this.variant = 'danger';
                 } catch (e) {
                     this.warning = e.response.data.error;
                     this.showDismissibleAlert = true;
+                    this.variant = 'danger';
                 }
             }
         },

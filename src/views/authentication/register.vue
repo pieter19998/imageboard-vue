@@ -31,7 +31,7 @@
                                 v-model="gender"
                         ></b-form-radio-group>
                     </b-form-group>
-                    <b-form-group label="Date if birth">
+                    <b-form-group label="Date of birth">
                         <b-input-group class="mb-3">
                             <b-form-input
                                     id="date"
@@ -119,13 +119,13 @@
             ...mapActions(['registerUser', 'fetchCurrentUser']),
             async register() {
                 try {
-                    if (this.password === this.passwordRepeat) {
+                    if (this.password === this.passwordRepeat && Date.parse(this.dateOfBirth)) {
                         await this.registerUser({email: this.email, password: this.password, username: this.username, dateOfBirth: this.dateOfBirth, gender: this.gender});
                         // await this.fetchCurrentUser();
                         //reroute page
                         await this.$router.push('/')
                     }
-                    this.warning = "password doesn't match";
+                    this.warning = "password doesn't match or Date of Birth is invalid";
                     this.showDismissibleAlert = true;
                 } catch (e) {
                     this.warning = e.response.data.error;

@@ -1,6 +1,7 @@
 import Axios from "axios";
 
 Axios.defaults.headers.common["Content-Type"] = "application/json";
+
 const config = require('../../../config/config');
 
 const state = {

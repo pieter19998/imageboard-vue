@@ -14,7 +14,7 @@
                 <b-card-text>
                     {{thread.thread.text}}
                 </b-card-text>
-                <b-card-sub-title class="mb-2">{{thread.thread.creationDate}}</b-card-sub-title>
+                <b-card-sub-title class="mb-2">{{Date.parse(thread.thread.creationDate)}}</b-card-sub-title>
 <!--                <b-button v-on:click="threadDetail" variant="primary">Open Thread</b-button>-->
                 <b-link class="btn btn-primary" id="commentView" :to="{ name: 'commentView', params: { thread: thread.thread.text,id: thread.thread.id } }">
                     Open Thread
